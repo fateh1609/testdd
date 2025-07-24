@@ -23,7 +23,10 @@ module.exports = (sequelize) => {
 
       /* Rank income */
       availableRank: { type: DataTypes.DECIMAL(24, 6), defaultValue: 0, field: 'avail_rank' },
-      frozenRank:    { type: DataTypes.DECIMAL(24, 6), defaultValue: 0, field: 'frozen_rank' }
+      frozenRank:    { type: DataTypes.DECIMAL(24, 6), defaultValue: 0, field: 'frozen_rank' },
+
+      /* Tracking */
+      totalEarned: { type: DataTypes.DECIMAL(24, 6), defaultValue: 0, field: 'total_earned' }
     },
     {
       tableName: 'wallets',

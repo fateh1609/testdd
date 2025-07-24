@@ -14,7 +14,7 @@ router.post('/send', async (req, res, next) => {
     if (!to || !subject || !html) {
       return res.status(400).json({ error: 'to, subject and html are required' });
     }
-    await sendEmail(to, subject, html);
+    await sendEmail({ to, subject, html });
     res.json({ success: true });
   } catch (err) {
     next(err);

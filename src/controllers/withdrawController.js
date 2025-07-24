@@ -1,4 +1,4 @@
-const { Op }          = require('sequelize');
+const { Op, Sequelize } = require('sequelize');
 const dayjs           = require('dayjs');
 const {
   Wallet, Stake, Withdrawal
@@ -64,6 +64,8 @@ exports.requestWithdrawal = async (req, res) => {
 
     await Withdrawal.create({
       userId: user.id,
+      stakeId: stake.id,
+      amountUsd: amount,
       amountPrada: pradaNeeded,
       status: 'completed',
       txHash

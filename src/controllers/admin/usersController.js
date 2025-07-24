@@ -11,7 +11,7 @@ exports.list = async (req,res) => {
         { email:{ [Op.iLike]: `%${q}%` } }
       ]
     },
-    attributes:['id','username','email','firstName','lastName','canWithdraw','loginActive','lendingAllowed']
+    attributes:['id','username','email','firstName','lastName','canWithdraw','loginActive','canLend']
   });
   res.json(users);
 };
@@ -19,7 +19,7 @@ exports.list = async (req,res) => {
 exports.toggleFlags = async (req,res)=>{
   const user = await User.findByPk(req.params.id);
   if (!user) return res.status(404).json({ error:'User not found' });
-  ['canWithdraw','loginActive','lendingAllowed'].forEach(k=>{
+  ['canWithdraw','loginActive','canLend'].forEach(k=>{
     if (k in req.body) user[k]=req.body[k];
   });
   await user.save();
