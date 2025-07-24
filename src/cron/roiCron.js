@@ -28,5 +28,4 @@ cron.schedule('59 23 * * *', async () => {
 
 /* Monday 00:00 UTC – release frozen ROI/Direct/Diff/Rank */
 // weekly release placeholder – implement if needed
-
-module.exports = {};           // nothing to export – cron registers itself
+// (no exports — this module schedules itself when required)
