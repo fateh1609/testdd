@@ -11,5 +11,3 @@ cron.schedule('0 * * * *', async () => {          // every hour
   }
   if (granted) console.log(`[Cron] Booster granted to ${granted} stake(s)`);
 });
-
-module.exports = {};
