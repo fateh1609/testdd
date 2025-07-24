@@ -1,7 +1,7 @@
 // src/controllers/adminSaleController.js
-const { createTokenSale }       = require('../models/tokenSaleModel')
-const { sendPradaTokens }       = require('../utils/pradaTransfer')
-const { sendConfirmationEmail } = require('../utils/emailService') // your existing email helper
+const { createTokenSale } = require('../models/tokenSaleModel')
+const { sendPradaTokens } = require('../utils/pradaTransfer')
+const { sendEmail }       = require('../utils/emailService')
 
 // full “Option B” flow:
 async function createAdminSale(req, res, next) {
@@ -23,7 +23,11 @@ async function createAdminSale(req, res, next) {
       pradaTxHash
     )
     // 3) email confirmation
-    await sendConfirmationEmail(email, { sale, pradaTxHash })
+    await sendEmail({
+      to: email,
+      subject: 'Token Sale Confirmation',
+      html: `<p>Your token sale has been recorded. Tx: ${pradaTxHash}</p>`
+    })
     return res.status(201).json(sale)
   } catch (err) {
     next(err)

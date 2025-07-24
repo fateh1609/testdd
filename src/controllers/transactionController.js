@@ -1,7 +1,10 @@
 // src/controllers/transactionController.js
 
 const {
-  createTransaction,getAllTransactions,getTransactionsBySale} = require('../models/tokenSaleModel');
+  createTransaction,
+  getAllTransactions,
+  getTransactionsBySale
+} = require('../models/transaction');
 
 /**
  * Create a new blockchain transaction entry in the system.

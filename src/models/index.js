@@ -24,6 +24,12 @@ const Stake    = require('./stakeModel')(sequelize, DataTypes);
 const Booster  = require('./boosterModel')(sequelize, DataTypes);
 const Rank     = require('./rankModel')(sequelize, DataTypes);
 const Lending  = require('./lendingModel')(sequelize, DataTypes);
+const RankHistory = require('./rankHistoryModel')(sequelize, DataTypes);
+const Withdrawal  = require('./withdrawalModel')(sequelize, DataTypes);
+
+// helper modules that use direct queries
+const TokenSale   = require('./tokenSaleModel');
+const Transaction = require('./transaction');
 
 /* ────────── Associations ────────── */
 /* 1 : 1  — User ↔ Wallet */
@@ -54,5 +60,9 @@ module.exports = {
   Stake,
   Booster,
   Rank,
-  Lending
+  Lending,
+  RankHistory,
+  Withdrawal,
+  TokenSale,
+  Transaction
 };
