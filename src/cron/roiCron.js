@@ -19,7 +19,7 @@ cron.schedule('59 23 * * *', async () => {
     const wallet = await Wallet.findByPk(stake.userId);
     const roiUsd = calcDailyRoi(stake);
 
-    await wallet.creditRoi(stake, roiUsd);          // freezes ROI
+    await wallet.creditRoi(roiUsd);          // freezes ROI
     await payDiffForRoi(stake.userId, roiUsd);      // freezes differential
   }
 
@@ -27,15 +27,6 @@ cron.schedule('59 23 * * *', async () => {
 });
 
 /* Monday 00:00 UTC – release frozen ROI/Direct/Diff/Rank */
-cron.schedule('0 0 * * 1', async () => {
-  const wallets = await Wallet.findAll();
-  for (const w of wallets) {
-    await w.releaseRoi?.();          // if you have such helpers
-    await w.releaseDirect?.();
-    await w.releaseDifferential?.();
-    await w.releaseRank?.();
-  }
-  console.log('[Cron] Weekly release executed');
-});
+// weekly release placeholder – implement if needed
 
 module.exports = {};           // nothing to export – cron registers itself

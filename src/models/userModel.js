@@ -1,8 +1,9 @@
 // backend/src/models/userModel.js
 const { DataTypes } = require('sequelize');
+const bcrypt = require('bcrypt');
 
-module.exports = (sequelize) =>
-  sequelize.define(
+module.exports = (sequelize) => {
+  const User = sequelize.define(
     'User',
     {
       username:      { type: DataTypes.STRING, allowNull:false, unique:true },
@@ -28,3 +29,10 @@ module.exports = (sequelize) =>
       timestamps: true
     }
   );
+
+  User.prototype.verifyPin = function (pin) {
+    return bcrypt.compare(pin, this.pinHash);
+  };
+
+  return User;
+};

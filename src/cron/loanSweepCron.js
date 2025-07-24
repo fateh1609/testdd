@@ -1,6 +1,7 @@
 const cron   = require('node-cron');
 const dayjs  = require('dayjs');
 const axios  = require('axios');
+const { Op } = require('sequelize');
 const { Lending, Stake, Wallet } = require('../models');
 
 const SCHEDULE = process.env.LOAN_SWEEP_CRON || '0 0 * * *';     // default daily 00:00 UTC
